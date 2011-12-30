@@ -5,14 +5,13 @@
  * http://server:port/admin/metadata
  * 		?mount=ignored
  * 		&mode=updinfo
- * 		&song=ignored
+ * 		&song=remains backword compadible
  * 		&artist=artist
  * 		&title=title
  * 		&duration=sekunder
  * 		&type=(jamendo,live,promo)
  * Eks:
  * nsrmb.samfunnet.no/beta/admin/metadata?mount=lol&mode=updinfo&song=ignored&artist=WAYDJ&title=CutMeNot%20-%20SSAN&duration=500&type=test
- * nsrmb.samfunnet.no/beta/admin/metadata?&title= &duration=321321345345
  */
 
  /*
@@ -23,14 +22,12 @@ $artist = $_GET["artist"];
 $title = $_GET["title"];
 $duration = $_GET["duration"];
 $type = $_GET["type"];
-$now = $time();
+$now = time();
 
 /*
  * Backwords comapadibilety
  */
 $song = $_GET["song"];
-
-echo "Mode: $mode, Artist: $artist, Title: $title, Duration: $duration, Type: $type";
 
 /*
  * Lets check that it contains something usable
@@ -53,6 +50,20 @@ if(($artist == "") && ($title == ""))
 	$artist = $metadata[0];
 	$title = $metadata[1];
 }
+
+/*
+ * 
+ */
+if ($type == "")
+{
+	
+}
+
+/*
+ * Debug info, What info did we get?
+ * TODO:Remove!
+ */
+echo "Mode: $mode, Artist: $artist, Title: $title, Duration: $duration, Type: $type";
 
 /*
  * Check if Songs metadata allready exist in db

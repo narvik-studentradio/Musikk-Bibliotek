@@ -1,1 +1,4 @@
-Redirect 302 /admin/metadata /api/icecast.php
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.*) /api/icecast.php [L]
