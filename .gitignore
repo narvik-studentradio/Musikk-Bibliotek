@@ -37,5 +37,5 @@ SCCS
 _$*
 _svn
 svn-commit*.tmp
-beta/settings.php
-beta/api/icecast.php
+settings.php
+api/icecast.php
