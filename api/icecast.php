@@ -1,23 +1,24 @@
 <?php
 /*
- * admin/metadata skal skrives til denne filen
+ * admin/metadata skal leses fra denne filen
  *
- * http://server:port/admin/metadata
+ * http://id:pw@server:port/admin/metadata
  * 		?mount=ignored
- * 		&mode=updinfo
- * 		&song=remains backword compadible
- * 		&artist=artist
- * 		&title=title
- * 		&duration=sekunder
- * 		&type=(jamendo,live,promo)
+ * 		&mode=updinfo			//Should we do anything special with this?
+ * 		&song=remains backward compatible
+ * 		&artist=artist			//New, used in nsr-mp
+ * 		&title=title			//New, used in nsr-mp
+ * 		&duration=sekunder		//New, used in nsr-mp
+ * 		&type=(jamendo,live,promo)	//New, used in nsr-mp
  * Eks:
  * nsrmb.samfunnet.no/admin/metadata?mount=lol&mode=updinfo&song=ignored&artist=WAYDJ&title=CutMeNot%20-%20SSAN&duration=500&type=test
  */
 
 /*
- * Include settings
+ * Include settings, file is required (halts execution if missing)
+ * It could get ugly if ice_auth was not set
  */
-include ("../settings.php");
+require("../settings.php");
 
 /*
  * HTTP authentication
@@ -32,17 +33,17 @@ if (!(($_SERVER['PHP_AUTH_USER'] == $ice_auth_id) && ($_SERVER['PHP_AUTH_PW'] ==
 /*
  * Stuff needed here:
  */
-$mode = $_GET["mode"];
-$artist = $_GET["artist"];
-$title = $_GET["title"];
-$duration = $_GET["duration"];
-$type = $_GET["type"];
+$mode = mysql_real_escape_string ($_GET["mode"]);
+$artist = mysql_real_escape_string ($_GET["artist"]);
+$title = mysql_real_escape_string ($_GET["title"]);
+$duration = mysql_real_escape_string ($_GET["duration"]);
+$type = mysql_real_escape_string ($_GET["type"]);
 $now = time();
 
 /*
  * Backwords comapadibilety
  */
-$song = $_GET["song"];
+$song = mysql_real_escape_string ($_GET["song"]);
 
 /*
  * Lets check that it contains something usable
