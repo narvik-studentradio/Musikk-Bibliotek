@@ -6,7 +6,7 @@
  */
 include 'settings.php';
 ?>
-
+<!DOCTYPE html>
 <html>
 	<head>
 		<title><?php    echo $owner;?>- Musikkbibliotek</title>
