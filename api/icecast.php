@@ -1,7 +1,11 @@
 <?php
 /*
- * admin/metadata skal leses fra denne filen
+ * Handles input from media players intended to update an icecast stream
+ * Developed to work with nsr-mp
+ * 
+ * Suggested url: /admin/metadata
  *
+ * How a request is formed:
  * http://id:pw@server:port/admin/metadata
  * 		?mount=ignored
  * 		&mode=updinfo			//Should we do anything special with this?
@@ -10,8 +14,6 @@
  * 		&title=title			//New, used in nsr-mp
  * 		&duration=sekunder		//New, used in nsr-mp
  * 		&type=(jamendo,live,promo)	//New, used in nsr-mp
- * Eks:
- * nsrmb.samfunnet.no/admin/metadata?mount=lol&mode=updinfo&song=ignored&artist=WAYDJ&title=CutMeNot%20-%20SSAN&duration=500&type=test
  */
 
 /*

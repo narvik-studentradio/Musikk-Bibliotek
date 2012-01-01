@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `library` (
   `sangid` int(12) NOT NULL AUTO_INCREMENT COMMENT 'sangid i nsrmb (intern)',
   `artist` varchar(100) DEFAULT NULL COMMENT 'Artist navn',
-  `title` varchar(100) DEFAULT NULL COMMENT 'Navn på sangen',
-  `duration` int(10) NOT NULL,
+  `title` varchar(100) DEFAULT NULL COMMENT 'Navn pÃ¥ sangen',
+  `duration` int(10) DEFAULT NULL,
   `lastPlayed` int(10) NOT NULL,
-  `playcounter` int(10) NOT NULL,
+  `playcounter` int(10) NOT NULL DEFAULT '0',
   `type` varchar(20) NOT NULL,
   PRIMARY KEY (`sangid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;

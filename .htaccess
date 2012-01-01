@@ -2,3 +2,4 @@ RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^admin/metadata$ api/icecast.php [L]
+RewriteRule ^xml/metadata$ api/xml_get.php [L]
