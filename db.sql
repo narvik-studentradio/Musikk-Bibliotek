@@ -23,7 +23,8 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `library` (
   `sangid` int(12) NOT NULL AUTO_INCREMENT COMMENT 'sangid i nsrmb (intern)',
   `artist` varchar(100) DEFAULT NULL COMMENT 'Artist navn',
-  `title` varchar(100) DEFAULT NULL COMMENT 'Navn p√• sangen',
+  `title` varchar(100) DEFAULT NULL COMMENT 'Navn på sangen',
+  `album` varchar(100) DEFAULT NULL COMMENT 'Album navn',
   `duration` int(10) DEFAULT NULL,
   `lastPlayed` int(10) NOT NULL,
   `playcounter` int(10) NOT NULL DEFAULT '0',

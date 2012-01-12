@@ -2,7 +2,7 @@
 /*
  * Handles input from media players intended to update an icecast stream
  * Developed to work with nsr-mp
- * 
+ *
  * Suggested url: /admin/metadata
  *
  * How a request is formed:
@@ -12,6 +12,7 @@
  * 		&song=remains backward compatible
  * 		&artist=artist			//New, used in nsr-mp
  * 		&title=title			//New, used in nsr-mp
+ * 		&album=album			//New, used in nsr-mp
  * 		&duration=sekunder		//New, used in nsr-mp
  * 		&type=(jamendo,live,promo)	//New, used in nsr-mp
  */
@@ -20,7 +21,7 @@
  * Include settings, file is required (halts execution if missing)
  * It could get ugly if ice_auth was not set
  */
-require("../settings.php");
+require ("../settings.php");
 
 /*
  * HTTP authentication
@@ -35,17 +36,18 @@ if (!(($_SERVER['PHP_AUTH_USER'] == $ice_auth_id) && ($_SERVER['PHP_AUTH_PW'] ==
 /*
  * Stuff needed here:
  */
-$mode = mysql_real_escape_string ($_GET["mode"]);
-$artist = mysql_real_escape_string ($_GET["artist"]);
-$title = mysql_real_escape_string ($_GET["title"]);
-$duration = mysql_real_escape_string ($_GET["duration"]);
-$type = mysql_real_escape_string ($_GET["type"]);
+$mode = mysql_real_escape_string($_GET["mode"]);
+$artist = mysql_real_escape_string($_GET["artist"]);
+$title = mysql_real_escape_string($_GET["title"]);
+$album = mysql_real_escape_string($_GET["album"]);
+$duration = mysql_real_escape_string($_GET["duration"]);
+$type = mysql_real_escape_string($_GET["type"]);
 $now = time();
 
 /*
  * Backwords comapadibilety
  */
-$song = mysql_real_escape_string ($_GET["song"]);
+$song = mysql_real_escape_string($_GET["song"]);
 
 /*
  * Lets check that it contains something usable
@@ -96,8 +98,12 @@ if (mysql_num_rows($result) < 1) {
 	if ($duration == "") {
 		$duration = Null;
 	}
-	
-	$query = "INSERT INTO library (artist, title , duration, lastPlayed, type) VALUES('$artist', '$title', '$duration', '$now', '$type')";
+
+	if ($album == "") {
+		$album = Null;
+	}
+
+	$query = "INSERT INTO library (artist, title, album, duration, lastPlayed, type) VALUES('$artist', '$title', '$album', '$duration', '$now', '$type')";
 	mysql_query($query) or die(mysql_error());
 } else {
 	while ($row = mysql_fetch_array($result)) {

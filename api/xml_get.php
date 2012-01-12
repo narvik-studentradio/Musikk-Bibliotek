@@ -50,6 +50,7 @@ while ($row = mysql_fetch_array($result)) {?>
 				type="<?php echo $row["type"]; ?>"
 				artist="<?php echo $row["artist"]; ?>"
 				title="<?php echo $row["title"]; ?>"
+				album="<?php echo $row["album"]; ?>"
 				remaining="<?php $remaining = ($row["lastPlayed"]+$row["duration"]-time()); echo ($remaining < 1? 0 : $remaining); ?>"
 				lastPlayed="<?php echo date(r, $row["lastPlayed"]); ?>"
 				duration="<?php echo $row["duration"]; ?>"
