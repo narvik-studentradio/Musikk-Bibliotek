@@ -1,19 +1,18 @@
 <?php
 class Song {
-    private $sangid;
-    private $artist;
-    private $title;
-    private $album;
-    private $duration;
-    private $lastPlayed;
-    private $playcounter;
-    private $type;
+    public $sangid;
+    public $artist;
+    public $title;
+    public $album;
+    public $duration;
+    public $lastPlayed;
+    public $playcounter;
+    public $type;
     
     function __construct($sangid, $artist, $title, $album, $duration, $lastPlayed, $playcounter, $type)
     {
         $this->sangid = $sangid;
         $this->artist = $artist;
-		echo $this->artist;
         $this->title = $title;
         $this->album = $album;
         $this->duration = $duration;
@@ -27,8 +26,8 @@ class Song {
         $remaining = ($this->lastPlayed + $this->duration - time());
         $remaining = ($remaining < 1 ? 0 : $remaining);
         return "\t<item>\n"
-        . "\t\t<artist>$this->artist</artist>\n"
-        . "\t\t<title>$this->title</title>\n"
+        . "\t\t<artist>" . htmlspecialchars ($this->artist, ENT_XML1, "UTF-8") . "</artist>\n"
+        . "\t\t<title>" . htmlspecialchars ($this->title, ENT_XML1, "UTF-8") . "</title>\n"
         . "\t\t<album>$this->album</album>\n"
         . "\t\t<remaining>$remaining</remaining>\n"
         . "\t\t<lastPlayed>" . date(r, $this->lastPlayed) . "</lastPlayed>\n"
