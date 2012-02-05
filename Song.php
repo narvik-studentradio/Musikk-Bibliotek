@@ -23,14 +23,12 @@ class Song {
     
     function getXmlItem()
     {
-        $remaining = ($this->lastPlayed + $this->duration - time());
-        $remaining = ($remaining < 1 ? 0 : $remaining);
         return "\t<item>\n"
         	// ENT_XML1 = 16
         . "\t\t<artist>" . htmlspecialchars ($this->artist, 16, "UTF-8") . "</artist>\n"
         . "\t\t<title>" . htmlspecialchars ($this->title, 16, "UTF-8") . "</title>\n"
         . "\t\t<album>" . htmlspecialchars ($this->album, 16, "UTF-8") . "</album>\n"
-        . "\t\t<remaining>" . htmlspecialchars ($remaining, 16, "UTF-8") . "</remaining>\n"
+        . "\t\t<remaining>" . htmlspecialchars (getRemaining(), 16, "UTF-8") . "</remaining>\n"
         . "\t\t<lastPlayed>" . htmlspecialchars (date(r, $this->lastPlayed), 16, "UTF-8") . "</lastPlayed>\n"
         . "\t\t<duration>" . htmlspecialchars ($this->duration, 16, "UTF-8") . "</duration>\n"
         . "\t\t<type>" . htmlspecialchars ($this->type, 16, "UTF-8") . "</type>\n"
@@ -51,4 +49,10 @@ class Song {
             return ($hrs > 0? $hrs . ":" : "") . ($mins > 0 ? $mins . ":" : "") . $secs;
         }
     }
+    
+	public function getRemaining()
+	{
+		$remaining = ($this->lastPlayed + $this->duration - time());
+         return ($remaining < 1 ? 0 : $remaining);
+	}
 }
