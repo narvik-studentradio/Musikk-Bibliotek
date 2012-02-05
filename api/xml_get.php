@@ -12,6 +12,7 @@
  */
 include("../settings.php");
 include("../Song.php");
+header("Content-type: text/xml");
 
 /*
  * Lets figure out how many tracks to return
