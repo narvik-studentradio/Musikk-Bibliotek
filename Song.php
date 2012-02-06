@@ -28,7 +28,7 @@ class Song {
         . "\t\t<artist>" . htmlspecialchars ($this->artist, 16, "UTF-8") . "</artist>\n"
         . "\t\t<title>" . htmlspecialchars ($this->title, 16, "UTF-8") . "</title>\n"
         . "\t\t<album>" . htmlspecialchars ($this->album, 16, "UTF-8") . "</album>\n"
-        . "\t\t<remaining>" . htmlspecialchars (getRemaining(), 16, "UTF-8") . "</remaining>\n"
+        . "\t\t<remaining>" . htmlspecialchars ($this->getRemaining(), 16, "UTF-8") . "</remaining>\n"
         . "\t\t<lastPlayed>" . htmlspecialchars (date(r, $this->lastPlayed), 16, "UTF-8") . "</lastPlayed>\n"
         . "\t\t<duration>" . htmlspecialchars ($this->duration, 16, "UTF-8") . "</duration>\n"
         . "\t\t<type>" . htmlspecialchars ($this->type, 16, "UTF-8") . "</type>\n"
@@ -37,7 +37,7 @@ class Song {
     
     public function getPosition($seconds)
     {
-        return time() - $lastPlayed;
+        $position = time() - $this->lastPlayed;
         
         if ($seconds)
         {
@@ -46,7 +46,7 @@ class Song {
             $hrs = floor ($position / 3600);
             $mins = floor ($position / 60)% 60;
             $secs = $position % 60;
-            return ($hrs > 0? $hrs . ":" : "") . ($mins > 0 ? $mins . ":" : "") . $secs;
+            return ($hrs > 0? $hrs . ":" : "") . ($mins > 0 ? $mins . ":" : "") . ($secs < 10 ? "0" .  $secs : $secs);
         }
     }
     

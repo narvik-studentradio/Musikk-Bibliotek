@@ -29,14 +29,14 @@ while ($row = mysql_fetch_array($result)) {
 	$Songs[] = new Song($row["sangid"], $row["artist"], $row["title"], $row["album"], $row["duration"], $row["lastPlayed"], $row["playcounter"], $row["type"]);
 }
 
-$reloadCountdown = ($Songs[0]->getRemaining() < 10 ? $Songs[0]->getRemaining() : $Songs[0]->getRemaining() + 10);
+$reloadCountdown = ($Songs[0]->getRemaining() > 10 ? $Songs[0]->getRemaining() + 2 : $Songs[0]->getRemaining() + 10);
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title><?php    echo $owner;?>- Musikkbibliotek</title>
 		<link rel="stylesheet" type="text/css" href="browser.css" />
-		<meta http-equiv="refresh" content="<?php echo $$reloadCountdown; ?>">
+		<meta http-equiv="refresh" content="<?php echo $reloadCountdown; ?>">
 	</head>
 	<body>
 		<div id="wrapper">
@@ -56,7 +56,7 @@ $reloadCountdown = ($Songs[0]->getRemaining() < 10 ? $Songs[0]->getRemaining() :
 					Started: <?php  echo date("H:i:s", $Songs[0]->lastPlayed);?>
 				</p>
 				<p class="info">
-					Current: <?php  echo date("H:i:s", (time() - $Songs[0]->lastPlayed)); ?>
+					Current: <?php  echo $Songs[0]->getPosition(false); ?>
 				</p>
 				<p class="info">
 					Duration: <?php  echo date("H:i:s", $Songs[0]->duration); ?>
@@ -64,7 +64,7 @@ $reloadCountdown = ($Songs[0]->getRemaining() < 10 ? $Songs[0]->getRemaining() :
 				<div class="clear"></div>
 			</div>
 			<!-- Smaller boxes for the previous 4 -->
-			<?php for ($i = 1; $i < 5; $i++) { ?>
+			<?php for ($i = 1; $i < sizeof($Songs); $i++) { ?>
 			<div class="content">
 				<img src="http://imgjam.com/albums/s91/91153/covers/1.200.jpg" />
 				<p class="info">
