@@ -4,7 +4,7 @@ class Song {
     public $artist;
     public $title;
     public $album;
-    public $duration;
+    private $duration;
     public $lastPlayed;
     public $playcounter;
     public $type;
@@ -35,19 +35,14 @@ class Song {
         . "\t</item>\n";
     }
     
-    public function getPosition($seconds)
+    function getPosition()
     {
-        $position = time() - $this->lastPlayed;
-        
-        if ($seconds)
-        {
-            return $position;
-        } else {
-            $hrs = floor ($position / 3600);
-            $mins = floor ($position / 60)% 60;
-            $secs = $position % 60;
-            return ($hrs > 0? $hrs . ":" : "") . ($mins > 0 ? $mins . ":" : "") . ($secs < 10 ? "0" .  $secs : $secs);
-        }
+        return time() - $this->lastPlayed;
+    }
+	
+	function getDuration()
+    {
+		return $this->duration;
     }
     
 	public function getRemaining()

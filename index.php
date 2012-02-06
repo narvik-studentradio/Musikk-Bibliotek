@@ -5,6 +5,7 @@
  *
  */
 include 'settings.php';
+include 'functions.php';
 include("Song.php");
 
 /*
@@ -29,6 +30,13 @@ while ($row = mysql_fetch_array($result)) {
 	$Songs[] = new Song($row["sangid"], $row["artist"], $row["title"], $row["album"], $row["duration"], $row["lastPlayed"], $row["playcounter"], $row["type"]);
 }
 
+if (sizeof($Songs) < 1)
+{
+	echo sizeof($Songs);
+	echo "We got no metadata";
+	exit;
+}
+
 $reloadCountdown = ($Songs[0]->getRemaining() > 10 ? $Songs[0]->getRemaining() + 2 : $Songs[0]->getRemaining() + 10);
 ?>
 <!DOCTYPE html>
@@ -50,16 +58,17 @@ $reloadCountdown = ($Songs[0]->getRemaining() > 10 ? $Songs[0]->getRemaining() +
 				<img src="http://imgjam.com/albums/s91/91153/covers/1.200.jpg" />
 				<p class="songtitle">
 					<?php  echo $Songs[0]->title; ?><br>
-					<small>Av: <?php  echo $Songs[0]->artist; ?></small>
+					<small>Av: <?php  echo $Songs[0]->artist; ?></small><br>
+					<small>Album: <?php  echo $Songs[0]->album; ?></small>
 				</p>
 				<p class="info">
 					Started: <?php  echo date("H:i:s", $Songs[0]->lastPlayed);?>
 				</p>
 				<p class="info">
-					Current: <?php  echo $Songs[0]->getPosition(false); ?>
+					Current: <?php  echo createTimestamp($Songs[0]->getPosition()); ?>
 				</p>
 				<p class="info">
-					Duration: <?php  echo date("H:i:s", $Songs[0]->duration); ?>
+					Duration: <?php  echo createTimestamp($Songs[0]->getDuration()); ?>
 				</p>
 				<div class="clear"></div>
 			</div>
@@ -70,8 +79,9 @@ $reloadCountdown = ($Songs[0]->getRemaining() > 10 ? $Songs[0]->getRemaining() +
 				<p class="info">
 					<?php  echo $Songs[$i]->artist; ?>
 					- <?php  echo $Songs[$i]->title; ?><br>
+					<small>Album: <?php  echo $Songs[$i]->album; ?></small><br>
 					Started: <?php echo date("H:i:s", $Songs[$i]->lastPlayed); ?><br>
-					Duration: <?php echo date("H:i:s", $Songs[$i]->duration);
+					Duration: <?php echo createTimestamp($Songs[$i]->getDuration());
 					?>
 					<div class="clear"></div>
 			</div>
