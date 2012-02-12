@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>NSR - Mobile</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="description" content="iOS, Chrome Mobile og Windows Phone 7 html5 app for Narvik Studentradio" />
+		<meta name="keywords" content="iOS, iPhone, Android, Narvik, Studentradio, nettradio, podcast, FM, 94.1 MHz, Narvik Studentradio, NSR, Studentersamfunn" />
+		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+		<link rel="stylesheet" type="text/css" href="mobile.css" />
+		<link rel="apple-touch-startup-image" href="startup.png">
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<script type="text/javascript" src="player.js"></script>
+		<script type="text/javascript" src="metadata.js"></script>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-18491763-3']);
+			_gaq.push(['_trackPageview']); (function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
+	</head>
+	<body>
+		<h1>Narvik Studentradio</h1>
+		<div id="OtherAD"></div>
+		<div id="logo"><img src="logo.png" height=207 width=207 alt="Logo: Narvik Studentradio" />
+		</div>
+		<div id="playercontrols">
+			<button type="button" onclick="PlayHQ()">
+				Spill HQ
+			</button>
+			<button type="button" onclick="PlayLQ()">
+				Spill LQ
+			</button>
+			<!--<button type="button" onclick="Play()">Play</button>-->
+			<button type="button" onclick="Pause()">
+				Pause
+			</button>
+			<button type="button" onclick="Stop()">
+				Stop
+			</button>
+		</div>
+		<div id="seek" style="height: 15px;">
+			<div id="progress" style="width:40%; height: 13px; background-color: gray; float: left;"></div>
+		</div>
+		<div>
+			<span id="timestamp" style="float: right; font-size: small;">0:11 - 4:45 </span>
+		</div>
+		<div id="current" style="border: 1px solid black;">
+			<img class="cover_big" src="gfx/Albumcover.png" alt"cover" style="border: 1px solid black; width:96px; height: 95px; float: left; overflow: hidden;"/>
+			<div style="width: 188px; float: left; text-align: left; padding: 0px; overflow: hidden;">
+				<p style="margin: 5px;">
+					Track
+					<br>
+					by Artist
+					<br>
+					Album
+				</p>
+			</div>
+			<div id="current_buttons" style="width: 30px; height: 95px; float: left; padding: 0px; overflow: hidden; position:relative;">
+				<img src="gfx/i.png" alt="info" style="position:absolute; top: 0; right: 0; width:23px; height: 23px; overflow: hidden;" />
+				<img src="gfx/jamendo.png" alt="type" style="position:absolute; bottom: 0; right: 0; width:30px; height: 23px; overflow: hidden;" />
+			</div>
+		</div>
+		<div style="border: 1px solid black; margin-top:5px;">
+			<img class="cover_small" src="gfx/Albumcover.png" alt"cover" style="border: 1px solid black; width:23px; height: 23px; float: left;"/>
+			<div style="width: 242px; height: 23px; float: left; text-align: left; padding: 0px;">
+				<p style="margin-top: 4px; margin-left: 5px; margin-bottom: 0px;">Artist - Track</p>
+			</div>
+			<img src="gfx/i.png" alt="type" style="float: right; width:23px; height: 23px;" />
+			<img src="gfx/jamendo.png" alt="type" style="float: right; height: 23px; width:30px;" />
+		</div>
+		<div id="status" style="">
+			autoplay="autoplay"
+		</div>
+		<div id="player">
+			Lavkvalitets lyd
+			<audio controls loop>
+				<source src="http://stream.sysrq.no:8000/01-nsr-mobile.mp3" type="audio/mp3">
+				<!-- fallback -->
+				<p>Nettleseren din st&oslash;tter ikke HTML5 lyd.</p>
+			</audio>
+		</div>
+		<div id="info">
+			<p>
+				Narvik Studentradio er Narviks feteste lokalradio. Vi sender musikk 24/7 p&aring; nett og p&aring; FM 94.1 Mhz. Alt innhold er Creative Commons og bla bla bla..
+			</p>
+			<h2>Kvalitet</h2>
+			<p>
+				<b>HQ:</b> Stereo lyd er tilgjengelig i b&aring;de mp3 og ogg vorbis. Bitrate ca 190 kb/s
+			</p>
+			<p>
+				<b>LQ:</b> Mono lyd er tilgjengelig i kun mp3. Bitrate: 64 kb/s
+			</p>
+			<p>
+				Mer info om lydformater og nettlesere se <a href="http://en.wikipedia.org/wiki/Comparison_of_layout_engines_(HTML5_Media)#Audio_format_support" target="_blank">wikipedia om html5 lyd</a>.
+			</p>
+		</div>
+	</body>
+</html>
