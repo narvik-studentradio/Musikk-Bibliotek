@@ -2,6 +2,8 @@ body {
 	margin: 0;
 }
 [controls] {
+	display: none;
+	visibility: hidden;
 	width: 100%;
 }
 img {
@@ -12,7 +14,7 @@ div {
 	text-align: center;
 	width: 320px;
 	margin: auto;
-overflow: auto;
+	overflow: auto;
 }
 h1 {
 	margin-top: 0.5em;
@@ -24,6 +26,8 @@ div#logo {
 }
 div#player {
 	height: 60px;
+	display: none;
+	visibility: hidden;
 }
 div#playercontrols {
 }

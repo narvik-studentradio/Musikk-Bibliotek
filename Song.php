@@ -29,7 +29,7 @@ class Song {
         . "\t\t<title>" . htmlspecialchars ($this->title, 16, "UTF-8") . "</title>\n"
         . "\t\t<album>" . htmlspecialchars ($this->album, 16, "UTF-8") . "</album>\n"
         . "\t\t<remaining>" . htmlspecialchars ($this->getRemaining(), 16, "UTF-8") . "</remaining>\n"
-        . "\t\t<lastPlayed>" . htmlspecialchars (date(r, $this->lastPlayed), 16, "UTF-8") . "</lastPlayed>\n"
+        . "\t\t<lastPlayed>" . htmlspecialchars (date('r', $this->lastPlayed), 16, "UTF-8") . "</lastPlayed>\n"
         . "\t\t<duration>" . htmlspecialchars ($this->duration, 16, "UTF-8") . "</duration>\n"
         . "\t\t<type>" . htmlspecialchars ($this->type, 16, "UTF-8") . "</type>\n"
         . "\t</item>\n";

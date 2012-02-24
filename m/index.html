@@ -14,11 +14,23 @@
 		<link rel="apple-touch-startup-image" href="startup.png">
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<script type="text/javascript" src="player.js"></script>
-		<script type="text/javascript" src="metadata.js"></script>
+		<script type="text/javascript" src="http://nsr-mb.samfunnet.no/js/metadata.js"></script>
+		<script type="text/javascript">
+			function start() {
+				init();
+				updateXml();
+				updateSeek();
+			}
+
+
+			window.onload = start;
+
+		</script>
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-18491763-3']);
-			_gaq.push(['_trackPageview']); (function() {
+			_gaq.push(['_trackPageview']);
+			(function() {
 				var ga = document.createElement('script');
 				ga.type = 'text/javascript';
 				ga.async = true;
@@ -41,50 +53,22 @@
 			<button type="button" onclick="PlayLQ()">
 				Spill LQ
 			</button>
-			<!--<button type="button" onclick="Play()">Play</button>-->
-			<button type="button" onclick="Pause()">
-				Pause
+			<button type="button" onclick="Play()">
+				Play
 			</button>
+			<!--<button type="button" onclick="Pause()">
+			Pause
+			</button>-->
 			<button type="button" onclick="Stop()">
 				Stop
 			</button>
 		</div>
-		<div id="seek" style="height: 15px;">
-			<div id="progress" style="width:40%; height: 13px; background-color: gray; float: left;"></div>
-		</div>
-		<div>
-			<span id="timestamp" style="float: right; font-size: small;">0:11 - 4:45 </span>
-		</div>
-		<div id="current" style="border: 1px solid black;">
-			<img class="cover_big" src="gfx/Albumcover.png" alt"cover" style="border: 1px solid black; width:96px; height: 95px; float: left; overflow: hidden;"/>
-			<div style="width: 188px; float: left; text-align: left; padding: 0px; overflow: hidden;">
-				<p style="margin: 5px;">
-					Track
-					<br>
-					by Artist
-					<br>
-					Album
-				</p>
-			</div>
-			<div id="current_buttons" style="width: 30px; height: 95px; float: left; padding: 0px; overflow: hidden; position:relative;">
-				<img src="gfx/i.png" alt="info" style="position:absolute; top: 0; right: 0; width:23px; height: 23px; overflow: hidden;" />
-				<img src="gfx/jamendo.png" alt="type" style="position:absolute; bottom: 0; right: 0; width:30px; height: 23px; overflow: hidden;" />
-			</div>
-		</div>
-		<div style="border: 1px solid black; margin-top:5px;">
-			<img class="cover_small" src="gfx/Albumcover.png" alt"cover" style="border: 1px solid black; width:23px; height: 23px; float: left;"/>
-			<div style="width: 242px; height: 23px; float: left; text-align: left; padding: 0px;">
-				<p style="margin-top: 4px; margin-left: 5px; margin-bottom: 0px;">Artist - Track</p>
-			</div>
-			<img src="gfx/i.png" alt="type" style="float: right; width:23px; height: 23px;" />
-			<img src="gfx/jamendo.png" alt="type" style="float: right; height: 23px; width:30px;" />
-		</div>
-		<div id="status" style="">
-			autoplay="autoplay"
-		</div>
+		<div id="status"></div>
+		<div id="seek"></div>
+		<div id="current"></div>
+		<div id="previous"></div>
 		<div id="player">
-			Lavkvalitets lyd
-			<audio controls loop>
+			<audio controls autoplay loop>
 				<source src="http://stream.sysrq.no:8000/01-nsr-mobile.mp3" type="audio/mp3">
 				<!-- fallback -->
 				<p>Nettleseren din st&oslash;tter ikke HTML5 lyd.</p>

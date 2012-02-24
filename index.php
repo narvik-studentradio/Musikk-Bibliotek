@@ -11,12 +11,12 @@ include("Song.php");
 /*
  * Lets figure out how many tracks to return
  */
-$limit = (int) mysql_real_escape_string ($_GET["tracks"]);
-if (($limit > 0) && ($limit <= 100)) {
+$limit = 5;
+if (isset($_GET["tracks"]))
+	$limit = (int) mysql_real_escape_string($_GET["tracks"]);
+
+if (($limit > 0) && ($limit <= 100))
 	$limit = $limit;
-} else {
-	$limit = 5;
-}
 
 $Songs = array();
 
